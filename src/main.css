@@ -1,15 +1,23 @@
-.container {
+:root {
+  --main-bg-color: #ffffff;
+  --main-color: #ffede8;
+}
+
+.container,
+.flexRow {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+}
+.container {
+  flex-direction: column;
 }
 
 .wrapper__card {
-  background-color: #ffede8;
+  background-color: var(--main-color);
   padding: 5px;
-  margin: 5px auto;
-  flex-grow: 1;
-  flex-shrink: 0;
-  max-width: 80px;
+  margin: 5px;
+  width: 80px;
   height: 80px;
   display: flex;
   justify-content: center;
@@ -20,4 +28,52 @@
 }
 .card {
   font-size: 30px;
+}
+.settingsForm {
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+}
+
+.settingsForm__item {
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+.errors {
+  height: 25px;
+  line-height: 20px;
+  font-size: 12px;
+  color: #ff0000;
+  text-align: center;
+}
+.suggestion {
+  cursor: pointer;
+  font-size: 16px;
+  color: black;
+}
+.input {
+  font-size: 16px;
+  padding: 5px;
+}
+.input:focus {
+  border-color: var(--main-color);
+}
+
+/* ANIMATIONS */
+
+.wrapper__card {
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+/* .front,
+.back {
+  -webkit-backface-visibility: hidden; 
+  backface-visibility: hidden;
+} */
+.back {
+  transform: rotateY(180deg);
+}
+.flip {
+  transform: rotateY(180deg);
 }
