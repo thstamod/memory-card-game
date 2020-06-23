@@ -91,7 +91,7 @@ const SettingsForm = ({ retrieve }) => {
         {availableMoves?.dirty && validateAvailableMoves()}
       </span>
       <button
-        className="settingsForm__item"
+        className="settingsForm__item settingsForm__button"
         onClick={() => handleClick()}
         disabled={validateSize() && validateAvailableMoves() ? "disabled" : ""}
       >
