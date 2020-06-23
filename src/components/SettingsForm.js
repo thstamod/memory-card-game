@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState } from "react"
 
 const SettingsForm = ({ retrieve }) => {
   const [size, setSize] = useState({ dirty: false, value: "" })
@@ -33,8 +33,12 @@ const SettingsForm = ({ retrieve }) => {
   }
 
   const validateAvailableMoves = () => {
+    //  debugger
     if (availableMoves.value === "") {
       return "please insert a number. Insert 0 for infinitive tries"
+    }
+    if (availableMoves.value < size.value) {
+      return `please insert a number bigger than ${size.value}`
     }
     return null
   }

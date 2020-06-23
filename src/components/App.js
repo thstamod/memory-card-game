@@ -7,7 +7,7 @@ const App = () => {
   const [settings, setSettings] = useState(null)
 
   const getSettings = (size, availMoves) => {
-    if (size) {
+    if (size && availMoves >= 0) {
       setSettings({ size, availableMoves: availMoves })
     }
   }
@@ -17,10 +17,10 @@ const App = () => {
       <h2>Memory card game</h2>
       {!settings && <SettingsForm retrieve={getSettings} />}
       {settings && (
-        <Board size={settings.size} availableMoves={settings.availMoves} />
+        <Board size={settings.size} availableMoves={settings.availableMoves} />
       )}
     </>
   )
 }
 
-export default App 
+export default App

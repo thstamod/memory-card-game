@@ -29,12 +29,13 @@ const letters = [
     "Y",
     "Z",
 ]
-const Board = ({ size }) => {
+const Board = ({ size, availableMoves }) => {
     const [state, setState] = useState({})
     const [initialOpen, setInitialOpen] = useState(true)
     const [open, setOpen] = useState(null)
     // I could use usestate as well. I have used useRef for education purposes
-    let pair = useRef(0)
+    //let p1 = useRef(null)
+    let p2 = useRef(null)
     let [tries, setTries] = useState(0)
     let [remaining, setRemaining] = useState(Math.pow(size, 2) / 2)
 
@@ -60,6 +61,7 @@ const Board = ({ size }) => {
         setTimeout(() => {
             setInitialOpen(false)
         }, 5000)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const findEmptyPosition = (tmpArr, max) => {
@@ -71,34 +73,36 @@ const Board = ({ size }) => {
     }
 
     const selectCard = (selectedCard) => {
-        // debugger
-        if (open && pair.current) {
+        if (availableMoves <= tries) {
+            return
+        }
+        if (open && p2.current) {
             return
         }
         if (!open) {
             setOpen(selectedCard)
             return
         }
-        if (open && !pair.current) {
-            pair.current = selectedCard
+        if (open && !p2.current) {
+            p2.current = selectedCard
             setTries(++tries)
         }
-        if (state[open]?.val !== state[selectedCard].val) {
+        if (state[open]?.val !== state[p2.current].val) {
             setTimeout(() => {
-                pair.current = null
+                p2.current = null
                 setOpen(null)
             }, 2000)
 
             return
         }
-        if (state[open]?.val === state[selectedCard].val) {
+        if (state[open]?.val === state[p2.current].val) {
             setState({
                 ...state,
                 [open]: { ...state[open], popen: true },
-                [selectedCard]: { ...state[selectedCard], popen: true },
+                [p2.current]: { ...state[p2.current], popen: true },
             })
             setOpen(null)
-            pair.current = null
+            p2.current = null
             setRemaining(--remaining)
         }
     }
@@ -116,7 +120,6 @@ const Board = ({ size }) => {
     }
 
     const getCards = (_cards) => {
-        console.log(initialOpen)
         const last = []
         let cards = []
         let index = 0
@@ -127,7 +130,7 @@ const Board = ({ size }) => {
                     key={key}
                     data={value}
                     show={
-                        key === open || pair.current === key || value.popen || initialOpen
+                        open === key || p2.current === key || value.popen || initialOpen
                             ? true
                             : false
                     }
@@ -148,8 +151,13 @@ const Board = ({ size }) => {
     return (
         <>
             <div className="container">{getCards(state)}</div>
-            <div>Tries: {tries}</div>
-            {!remaining && <div>End Game</div>}
+            <div className="results">
+                <span>You have tried {tries} times</span>
+                {!remaining && <span className="win">Congratulations!! You Win!!</span>}
+                <span className="lost">
+                    {!!remaining && availableMoves <= tries && <div>Game Over...</div>}
+                </span>
+            </div>
         </>
     )
 }

@@ -3,6 +3,10 @@
   --main-color: #ffede8;
 }
 
+h2 {
+  text-align: center;
+}
+
 .container,
 .flexRow {
   display: flex;
@@ -51,6 +55,7 @@
   cursor: pointer;
   font-size: 16px;
   color: black;
+  text-decoration: underline;
 }
 .input {
   font-size: 16px;
@@ -59,18 +64,29 @@
 .input:focus {
   border-color: var(--main-color);
 }
+.results {
+  margin-top: 25px;
+  text-align: center;
+}
 
+.results span {
+  display: block;
+}
+.results .win {
+  color: #0a851b;
+  font-size: 18px;
+}
+.results .lost {
+  color: #ff0000;
+  font-size: 18px;
+}
 /* ANIMATIONS */
 
 .wrapper__card {
   transition: transform 0.8s;
   transform-style: preserve-3d;
 }
-/* .front,
-.back {
-  -webkit-backface-visibility: hidden; 
-  backface-visibility: hidden;
-} */
+
 .back {
   transform: rotateY(180deg);
 }
