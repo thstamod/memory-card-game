@@ -13,6 +13,7 @@ const SettingsForm = ({ retrieve }) => {
     if (size.value === 0) {
       return "please insert a number bigger than zero"
     }
+    //if(size.value )
     if (size.value < 2) {
       return (
         <>
@@ -37,8 +38,12 @@ const SettingsForm = ({ retrieve }) => {
     if (availableMoves.value === "") {
       return "please insert a number. Insert 0 for infinitive tries"
     }
-    if (availableMoves.value < size.value) {
-      return `please insert a number bigger than ${size.value}`
+    if (
+      availableMoves.value < Math.pow(size.value, 2) / 2 &&
+      // eslint-disable-next-line eqeqeq
+      availableMoves.value != 0
+    ) {
+      return `please insert a number bigger than ${Math.pow(size.value, 2) / 2}`
     }
     return null
   }

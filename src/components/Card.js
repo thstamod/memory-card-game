@@ -3,10 +3,8 @@ import React from "react"
 const Card = ({ data, handleClick, show, basis }) => {
   const { val, popen } = data
   let classesWrapper = "wrapper__card "
-  let classesCard = "card "
   if (show) {
     classesWrapper += "flip"
-    classesCard += "back"
   }
 
   const clickCard = () => {
@@ -16,7 +14,10 @@ const Card = ({ data, handleClick, show, basis }) => {
 
   return (
     <div onClick={clickCard} className={classesWrapper}>
-      <div className={classesCard}>{show ? val : "🍉"}</div>
+      <div className="front">
+        <div>{val}</div>
+      </div>
+      <div className="back"></div>
     </div>
   )
 }
