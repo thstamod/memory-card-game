@@ -1,7 +1,4 @@
-# memory-card-game project
-
-
-## Few words about
+## Few words about memory-card-game project
 ### instructions
 
 * Select size.
