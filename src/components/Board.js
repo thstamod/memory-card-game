@@ -34,12 +34,12 @@ const Board = ({ size, availableMoves }) => {
   }, [])
 
   const selectCard = (selectedCard) => {
-    if (availableMoves !== 0 && availableMoves < tries + remaining) {
-      return
-    }
-    if (open && p2.current) {
-      return
-    }
+    if (initialOpen) return
+
+    if (availableMoves !== 0 && availableMoves < tries + remaining) return
+
+    if (open && p2.current) return
+
     if (!open) {
       setOpen(selectedCard)
       return

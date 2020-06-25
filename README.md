@@ -1,3 +1,15 @@
+# memory-card-game project
+
+
+## Few words about
+### instructions
+
+* Select size.
+* Select how many moves you believe you need to win the game. You can set 0 for unlimited moves.
+### Notes
+When the algorithm detects that you have not any chance to win this game, it will finish the game.
+If you choose to add the specific moves rule the algorithm guides you properly 
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
